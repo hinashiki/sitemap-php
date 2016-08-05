@@ -193,9 +193,10 @@ class Sitemap {
 	 * @param string|null $priority The priority of this URL relative to other URLs on your site. Valid values range from 0.0 to 1.0.
 	 * @param string|null $changefreq How frequently the page is likely to change. Valid values are always, hourly, daily, weekly, monthly, yearly and never.
 	 * @param string|int|null $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
+	 * @param callable|null $ext Use if you want to add other attribute or child element. callable's 1st argument MUST BE XMLWriter ( * $this->getWriter() ).
 	 * @return Sitemap
 	 */
-	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL) {
+	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL, $ext = NULL) {
 		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0) {
 			if ($this->getWriter() instanceof \XMLWriter) {
 				$this->endSitemap();
@@ -212,6 +213,8 @@ class Sitemap {
 			$this->getWriter()->writeElement('changefreq', $changefreq);
 		if ($lastmod)
 			$this->getWriter()->writeElement('lastmod', $this->getLastModifiedDate($lastmod));
+		if ($ext && is_callable($ext))
+			$ext($this->getWriter());
 		$this->getWriter()->endElement();
 		return $this;
 	}
