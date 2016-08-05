@@ -73,7 +73,7 @@ class Sitemap {
 	/**
 	 * Assigns XMLWriter object instance
 	 *
-	 * @param \XMLWriter $writer 
+	 * @param \XMLWriter $writer
 	 */
 	private function setWriter(\XMLWriter $writer) {
 		$this->writer = $writer;
@@ -81,7 +81,7 @@ class Sitemap {
 
 	/**
 	 * Returns path of sitemaps
-	 * 
+	 *
 	 * @return string
 	 */
 	private function getPath() {
@@ -90,7 +90,7 @@ class Sitemap {
 
 	/**
 	 * Sets paths of sitemaps
-	 * 
+	 *
 	 * @param string $path
 	 * @return Sitemap
 	 */
@@ -101,7 +101,7 @@ class Sitemap {
 
 	/**
 	 * Returns filename of sitemap file
-	 * 
+	 *
 	 * @return string
 	 */
 	private function getFilename() {
@@ -110,7 +110,7 @@ class Sitemap {
 
 	/**
 	 * Sets filename of sitemap file
-	 * 
+	 *
 	 * @param string $filename
 	 * @return Sitemap
 	 */
@@ -130,7 +130,7 @@ class Sitemap {
 
 	/**
 	 * Increases item counter
-	 * 
+	 *
 	 */
 	private function incCurrentItem() {
 		$this->current_item = $this->current_item + 1;
@@ -147,7 +147,7 @@ class Sitemap {
 
 	/**
 	 * Increases sitemap file count
-	 * 
+	 *
 	 */
 	private function incCurrentSitemap() {
 		$this->current_sitemap = $this->current_sitemap + 1;
@@ -155,7 +155,7 @@ class Sitemap {
 
 	/**
 	 * Prepares sitemap XML document
-	 * 
+	 *
 	 */
 	private function startSitemap() {
 		$this->setWriter(new \XMLWriter());
@@ -173,7 +173,7 @@ class Sitemap {
 	/**
 	 * Adds an item to sitemap
 	 *
-	 * @param string $loc URL of the page. This value must be less than 2,048 characters. 
+	 * @param string $loc URL of the page. This value must be less than 2,048 characters.
 	 * @param string|null $priority The priority of this URL relative to other URLs on your site. Valid values range from 0.0 to 1.0.
 	 * @param string|null $changefreq How frequently the page is likely to change. Valid values are always, hourly, daily, weekly, monthly, yearly and never.
 	 * @param string|int|null $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
