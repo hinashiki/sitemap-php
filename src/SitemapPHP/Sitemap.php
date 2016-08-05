@@ -26,6 +26,7 @@ class Sitemap {
 	private $filename = 'sitemap';
 	private $current_item = 0;
 	private $current_sitemap = 0;
+	private $urlset_attributes = array();
 
 	const EXT = '.xml';
 	const SCHEMA = 'http://www.sitemaps.org/schemas/sitemap/0.9';
@@ -120,6 +121,18 @@ class Sitemap {
 	}
 
 	/**
+	 * Add sitemap attribute
+	 *
+	 * @param string $name
+	 * @param string $value
+	 * @return Sitemap
+	 */
+	public function addUrlsetAttribute($name, $value) {
+		$this->urlset_attributes[] = compact('name', 'value');
+		return $this;
+	}
+
+	/**
 	 * Returns current item count
 	 *
 	 * @return int
@@ -168,6 +181,9 @@ class Sitemap {
 		$this->getWriter()->setIndent(true);
 		$this->getWriter()->startElement('urlset');
 		$this->getWriter()->writeAttribute('xmlns', self::SCHEMA);
+		foreach($this->urlset_attributes as $attr) {
+			$this->getWriter()->writeAttribute($attr['name'], $attr['value']);
+		}
 	}
 
 	/**
