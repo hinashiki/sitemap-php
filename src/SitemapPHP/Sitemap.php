@@ -121,7 +121,7 @@ class Sitemap {
 	}
 
 	/**
-	 * Add sitemap attribute
+	 * Add sitemap urlset attribute
 	 *
 	 * @param string $name
 	 * @param string $value
